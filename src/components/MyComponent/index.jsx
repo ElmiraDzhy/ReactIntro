@@ -12,14 +12,16 @@ class Counter extends React.Component {
 
   onClickHandler = (e) => {
 
+    const {counter} = this.state;
+
     if(e.target.name === 'plus'){
       this.setState({
-        counter: this.state.counter + 1,
+        counter:  counter + 1,
       });
 
     }else{
       this.setState({
-        counter: this.state.counter - 1,
+        counter:  counter > 0 ? counter - 1: 0,
       });
 
     }
