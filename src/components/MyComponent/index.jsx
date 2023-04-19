@@ -1,31 +1,46 @@
 import React from 'react';
 
-class DayPart extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-          
-        }
+class Counter extends React.Component {
+  constructor(props){
+      super(props);
+      this.state = {
+        counter: 0,
+      };
+
+  }
+
+
+  onClickHandler = (e) => {
+    
+    let {counter} = this.state;
+
+    if(e.target.name === 'plus'){
+      this.setState({
+        counter: counter+=1,
+      });
+
+    }else{
+      this.setState({
+        counter: counter-=1,
+      });
 
     }
+  }  
+
+ 
 
   render() {
-    const {hours} = this.props;
+    const {counter} = this.state;
 
-    let welcome = '';
-
-    if(hours >= 11 && hours <= 16){
-      welcome = 'Good day';
-    }
-    if(hours >= 17 && hours <= 21){
-      welcome = 'Good evening';
-    }
     return (
       <div>
-        {welcome}
+        <h1>{counter}</h1>
+        <button name="minus" onClick={this.onClickHandler}>-</button>
+        <button name="plus" onClick={this.onClickHandler}>+</button>
+     
       </div>
     )
   }
 }
 
-export default DayPart;
+export default Counter;
