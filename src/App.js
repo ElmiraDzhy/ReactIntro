@@ -1,12 +1,10 @@
-import Counter from './components/MyComponent';
-import Aloha from './components/Aloha';
+import Users from './components/Users';
 
 const App = (props) => {
 
   return (
     <>
-      <Counter/>
-      <Aloha name="Ann"/>
+      <Users/>
     </>
   );
 }
