@@ -1,9 +1,13 @@
+import Counter from './components/MyComponent';
+import Aloha from './components/Aloha';
+
 const App = (props) => {
 
   return (
-   <h1>
-    Hello react! 
-   </h1> // React.createElement('h1', {}, 'Hello react!')
+    <>
+      <Counter/>
+      <Aloha name="Ann"/>
+    </>
   );
 }
 
