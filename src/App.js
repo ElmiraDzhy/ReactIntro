@@ -1,10 +1,10 @@
-import Users from './components/Users';
+import Box from './components/Box';
 
 const App = (props) => {
 
   return (
     <>
-      <Users/>
+      <Box/>
     </>
   );
 }
