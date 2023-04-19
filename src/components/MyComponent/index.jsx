@@ -1,24 +1,31 @@
 import React from 'react';
 
-class MyComponent extends React.Component {
+class DayPart extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-
+          
         }
 
     }
 
   render() {
-    const {name, age} = this.props;
+    const {hours} = this.props;
 
+    let welcome = '';
+
+    if(hours >= 11 && hours <= 16){
+      welcome = 'Good day';
+    }
+    if(hours >= 17 && hours <= 21){
+      welcome = 'Good evening';
+    }
     return (
       <div>
-        <b>Hello, {name}!</b> 
-        <p>{name} is {age < 18 ? "not adult" : "adult"}.</p>
+        {welcome}
       </div>
     )
   }
 }
 
-export default MyComponent;
+export default DayPart;

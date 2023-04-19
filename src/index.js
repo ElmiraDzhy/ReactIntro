@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import MyComponent from './components/MyComponent';
+import DayPart from './components/MyComponent';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <>
-    <MyComponent name="Ivan" age={22}/>
-    
+    <DayPart hours={16}/>
+    <DayPart hours={12}/>
+    <DayPart hours={20}/>
+
     </>
   </React.StrictMode>
 );
