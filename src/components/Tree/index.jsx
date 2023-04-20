@@ -9,6 +9,10 @@ export default class Tree extends Component {
 		};
 	}
 
+	componentWillUnmount() {
+		console.log("will unmount");
+	}
+
 	componentDidMount() {
 		console.log("component did mount");
 	}
@@ -36,7 +40,7 @@ export default class Tree extends Component {
 
 	render() {
 		console.log("render");
-		return <div onClick={this.onClickHandler}>tree</div>;
+		return <button onClick={this.onClickHandler}>tree</button>;
 	}
 }
 
