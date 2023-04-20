@@ -18,10 +18,10 @@ class Aloha extends React.Component {
 	render() {
 		const { name } = this.props;
 		return (
-			<div>
+			<li>
 				{name}, {this.state.isLeaving ? "Bye" : "Hello"}
 				<button onClick={this.greeting}>Change</button>
-			</div>
+			</li>
 		);
 	}
 }
