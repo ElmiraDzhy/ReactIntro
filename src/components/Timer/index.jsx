@@ -34,6 +34,11 @@ export default class Timer extends Component {
 		this.timerId = null;
 	};
 
+	clear = () => {
+		this.stop();
+		this.setState({ count: new Date(0, 0, 0, 0, 0, 0, 0) });
+	};
+
 	render() {
 		const { count } = this.state;
 
@@ -42,7 +47,7 @@ export default class Timer extends Component {
 				<h1>{format(count, "HH:mm:ss")}</h1>
 				<button onClick={this.start}>start</button>
 				<button onClick={this.stop}>stop</button>
-				<button>clear</button>
+				<button onClick={this.clear}>clear</button>
 			</>
 		);
 	}
