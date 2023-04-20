@@ -67,6 +67,14 @@ class App extends React.Component {
 		});
 	};
 
+	deleteHandler = (id) => {
+		const { users } = this.state;
+		const filtered = users.filter((u) => u.id !== id);
+		this.setState({
+			users: filtered,
+		});
+	};
+
 	render() {
 		const { users } = this.state;
 
@@ -75,8 +83,9 @@ class App extends React.Component {
 				<button onClick={this.sortUsers}>Sort Users</button>
 				{users.map((u) => (
 					<Aloha
-						name={u.name}
+						user={u}
 						key={u.id}
+						deleteCallback={this.deleteHandler}
 					/>
 				))}
 			</ul>
