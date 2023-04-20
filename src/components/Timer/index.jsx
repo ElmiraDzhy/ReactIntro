@@ -1,18 +1,19 @@
 import React, { Component } from "react";
+import { format, addSeconds } from "date-fns";
 
 export default class Timer extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			count: 0,
+			count: new Date(0, 0, 0, 0, 0, 0, 0),
 		};
 
 		this.timerId = null;
 	}
 
 	componentDidMount() {
-		this.timerId = this.start();
+		this.start();
 	}
 
 	componentWillUnmount() {
@@ -20,21 +21,30 @@ export default class Timer extends Component {
 	}
 
 	start = () => {
-		return setInterval(() => {
-			this.setState({
-				count: this.state.count + 1,
-			});
-		}, 1000);
+		console.log("i am here");
+		if (!this.timerId) {
+			this.timerId = setInterval(() => {
+				this.setState((state) => ({ count: addSeconds(state.count, 1) }));
+			}, 1000);
+		}
 	};
 
 	stop = () => {
 		clearInterval(this.timerId);
+		this.timerId = null;
 	};
 
 	render() {
 		const { count } = this.state;
 
-		return <h1>{count}</h1>;
+		return (
+			<>
+				<h1>{format(count, "HH:mm:ss")}</h1>
+				<button onClick={this.start}>start</button>
+				<button onClick={this.stop}>stop</button>
+				<button>clear</button>
+			</>
+		);
 	}
 }
 
