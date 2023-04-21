@@ -8,7 +8,6 @@ export default class ToDoList extends Component {
 
 		this.state = {
 			todoList: [],
-			isDoneProp: null,
 		};
 	}
 
@@ -57,18 +56,32 @@ export default class ToDoList extends Component {
 		});
 	};
 
+	changeTextItem = (newText, id) => {
+		const { todoList } = this.state;
+		const newList = todoList.map((item) => {
+			if (item.id === id) {
+				item.todoItem = newText;
+			}
+			return item;
+		});
+		this.setState({
+			todoList: newList,
+		});
+	};
+
 	render() {
 		const { todoList } = this.state;
-		const liMap = todoList.map((todo) => {
-			return todo.isRemoving ? null : (
-				<ToDoItem
-					data={todo}
-					key={todo.id}
-					callback={this.removeListItem}
-					changeIsDone={this.changeIsDone}
-				/>
-			);
-		});
+
+		const liMap = todoList.map((todo) => (
+			<ToDoItem
+				data={todo}
+				key={todo.id}
+				removeListItem={this.removeListItem}
+				changeIsDone={this.changeIsDone}
+				changeText={this.changeTextItem}
+			/>
+		));
+
 		return (
 			<>
 				<ToDoForm callback={this.addNewItem} />
