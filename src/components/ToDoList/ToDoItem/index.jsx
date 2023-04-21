@@ -1,5 +1,6 @@
 import React from "react";
 import { format } from "date-fns";
+import styles from './ToDoItem.module.css';
 
 class ToDoItem extends React.Component {
 	constructor(props) {
@@ -41,7 +42,7 @@ class ToDoItem extends React.Component {
 
 		return (
 			
-				<li>
+				<li className={styles.container}>
 					<input
 						type="checkbox"
 						checked={isDone}
@@ -50,7 +51,7 @@ class ToDoItem extends React.Component {
           
           <span>{body}</span> -
           <span>{format(time, "yyyy-MM-dd hh:mm")}</span>
-				  <button onClick={this.onClick}>delete</button>
+				  <button className={styles.delBtn} onClick={this.onClick}>delete</button>
 				  <button onClick={this.changeView}>edit</button>
 			
 					
