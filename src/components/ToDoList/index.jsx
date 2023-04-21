@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ToDoForm from "./ToDoForm";
 import ToDoItem from "./ToDoItem";
+import { getTime } from "date-fns";
 
 export default class ToDoList extends Component {
 	constructor(props) {
@@ -69,6 +70,19 @@ export default class ToDoList extends Component {
 		});
 	};
 
+	sortList = () => {
+		const { todoList } = this.state;
+		const newList = [...todoList];
+		newList.sort((a, b) => {
+			return getTime(a.time) > getTime(b.time) ? 1 : -1;
+    } );
+    
+    this.setState( {
+      todoList: newList,
+    })
+
+	};
+
 	render() {
 		const { todoList } = this.state;
 
@@ -85,6 +99,7 @@ export default class ToDoList extends Component {
 		return (
 			<>
 				<ToDoForm callback={this.addNewItem} />
+				<button onClick={this.sortList}>SORT</button>
 				<ul>{liMap}</ul>
 			</>
 		);
