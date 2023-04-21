@@ -61,7 +61,7 @@ export default class ToDoList extends Component {
 		const { todoList } = this.state;
 		const newList = todoList.map((item) => {
 			if (item.id === id) {
-				item.todoItem = newText;
+				item.toDoItem = newText;
 			}
 			return item;
 		});
