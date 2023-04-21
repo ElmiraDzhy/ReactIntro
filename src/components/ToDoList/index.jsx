@@ -1,81 +1,78 @@
 import React, { Component } from "react";
-import { format } from "date-fns";
+import ToDoForm from "./ToDoForm";
+import ToDoItem from "./ToDoItem";
 
 export default class ToDoList extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			toDoItem: "",
-			isDone: false,
-			time: new Date(0, 0, 0, 0, 0, 0, 0),
+			todoList: [],
+			isDoneProp: null,
 		};
 	}
 
-	submitHandler = (e) => {
-		e.preventDefault();
-		console.log(e.target.children[0].value);
+	addNewItem = (data) => {
+		const { todoList } = this.state;
+
+		this.setState({
+			todoList: [
+				...todoList,
+				{
+					...data,
+					id: todoList.length,
+				},
+			],
+		});
 	};
 
-	generalHandler = ({ target }) => {
-		switch (target.type) {
-			case "text": {
-				this.setState({
-					toDoItem: target.value,
-				});
-				break;
-			}
+	changeIsDone = (isDone, id) => {
+		const { todoList } = this.state;
 
-			case "checkbox": {
-				this.setState(() => ({
-					isDone: target.checked,
-				}));
-				break;
+		const newList = todoList.map((td) => {
+			if (td.id === id) {
+				td.isDone = isDone;
 			}
+			return td;
+		});
 
-			case "datetime-local": {
-				this.setState({
-					time: new Date(target.value),
-				});
-				break;
+		this.setState({
+			todoList: newList,
+		});
+	};
+
+	removeListItem = (id) => {
+		const { todoList } = this.state;
+
+		const newList = todoList.filter((td) => {
+			if (td.id !== id) {
+				return true;
+			} else {
+				return false;
 			}
+		});
 
-			default:
-		}
+		this.setState({
+			todoList: newList,
+		});
 	};
 
 	render() {
-		const { toDoItem, time, isDone } = this.state;
-
+		const { todoList } = this.state;
+		const liMap = todoList.map((todo) => {
+			return todo.isRemoving ? null : (
+				<ToDoItem
+					data={todo}
+					key={todo.id}
+					callback={this.removeListItem}
+					changeIsDone={this.changeIsDone}
+				/>
+			);
+		});
 		return (
 			<>
-				<form onSubmit={this.submitHandler}>
-					<input
-						name="toDoItem"
-						type="text"
-						value={toDoItem}
-						onChange={this.generalHandler}
-					/>
-
-					<label>
-						isDone?
-						<input
-							name="check"
-							type="checkbox"
-							checked={isDone}
-							onChange={this.generalHandler}
-						/>
-					</label>
-
-					<input
-						name="time"
-						type="datetime-local"
-						value={format(time, "yyyy-MM-dd hh:mm")}
-						onChange={this.generalHandler}
-					/>
-					<button>Submit</button>
-				</form>
-				<ul></ul>
+				<ToDoForm callback={this.addNewItem} />
+				<ul>{liMap}</ul>
 			</>
 		);
 	}
