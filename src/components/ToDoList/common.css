@@ -1,11 +1,26 @@
+* {
+	box-sizing: border-box;
+}
+
 button {
 	border: none;
 	background-color: rgb(140, 140, 219);
+	border: 1px solid rgb(140, 140, 219);
 	color: white;
 	padding: 10px;
+}
+
+button:hover{
+  cursor: pointer;
+  background-color: rgb(101, 101, 241);
+  border: 1px solid blue;
 }
 
 body {
 	background-color: rgb(144, 144, 219);
 }
 
+input:focus{
+	outline: none;
+	border: 1px solid blue;
+}

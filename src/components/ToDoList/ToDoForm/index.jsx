@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { format } from "date-fns";
-
+import styles from "./ToDoForm.module.css";
 export default class ToDoForm extends Component {
 	constructor(props) {
 		super(props);
@@ -11,8 +11,6 @@ export default class ToDoForm extends Component {
 			time: new Date(),
 		};
 	}
-
-
 
 	submitHandler = (e) => {
 		e.preventDefault();
@@ -51,12 +49,16 @@ export default class ToDoForm extends Component {
 
 		return (
 			<>
-				<form onSubmit={this.submitHandler}>
+				<form
+					onSubmit={this.submitHandler}
+					className={styles.container}>
 					<input
 						name="toDoItem"
 						type="text"
 						value={toDoItem}
-						onChange={this.generalHandler}
+						onChange={ this.generalHandler }
+						className={ styles.inputTodo }
+						placeholder="What needs to be done?"
 					/>
 
 					<label>
@@ -75,7 +77,7 @@ export default class ToDoForm extends Component {
 						value={format(time, "yyyy-MM-dd hh:mm")}
 						onChange={this.generalHandler}
 					/>
-					<button>Submit</button>
+					<button className={styles.addBtn}>+</button>
 				</form>
 			</>
 		);
