@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import ToDoForm from "./ToDoForm";
 import ToDoItem from "./ToDoItem";
 import { getTime } from "date-fns";
+import classNames from "classnames";
+import styles from './ToDoList.module.css';
 
 export default class ToDoList extends Component {
 	constructor(props) {
@@ -97,11 +99,12 @@ export default class ToDoList extends Component {
 		));
 
 		return (
-			<>
+			<div className={ styles.container }>
+				<h1 className={styles.title}>To Do List</h1>
 				<ToDoForm callback={this.addNewItem} />
-				<button onClick={this.sortList}>SORT</button>
+				<button className={styles.btn} onClick={this.sortList}>SORT</button>
 				<ul>{liMap}</ul>
-			</>
+			</div>
 		);
 	}
 }
