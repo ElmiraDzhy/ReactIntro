@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 class Aloha extends React.Component {
 	constructor(props) {
@@ -33,6 +34,17 @@ class Aloha extends React.Component {
 			</li>
 		);
 	}
+}
+
+const PropUser = {
+	name: PropTypes.string.isRequired,
+	id: PropTypes.number.isRequired,
+}
+
+Aloha.propTypes = {
+	user: PropTypes.shape( PropUser ).isRequired,
+	deleteCallback: PropTypes.func.isRequired,
+	
 }
 
 export default Aloha;
