@@ -61,7 +61,7 @@ class ToDoItem extends React.Component {
 
 const dataProp = {
   isDone: PropTypes.bool.isRequired,
-  time: PropTypes.data.isRequired,
+  time: PropTypes.instanceOf(Date).isRequired,
   toDoItem: PropTypes.string.isRequired,
 };
 
