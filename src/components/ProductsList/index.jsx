@@ -38,9 +38,7 @@ export default class PropductsList extends Component {
   render() {
     const { users, error, isFetching } = this.state;
     const products = users.map(p => (
-      <ProductCard key={p.id} data={p}>
-        
-      </ProductCard>
+      <ProductCard key={p.id} data={p}/>
     ));
 
     if (isFetching) {

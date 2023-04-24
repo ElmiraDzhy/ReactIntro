@@ -1,5 +1,5 @@
 import React from 'react';
-import Aloha from './components/Aloha';
+import PropductsList from './components/ProductsList';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class App extends React.Component {
     return (
       <>
         <button onClick={this.onClick}>Kill me</button>
-        {<Aloha />}
+        {<PropductsList/>}
       </>
     );
   }
