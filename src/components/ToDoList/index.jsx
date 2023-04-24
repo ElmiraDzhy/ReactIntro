@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ToDoForm from "./ToDoForm";
 import ToDoItem from "./ToDoItem";
 import { getTime } from "date-fns";
-import classNames from "classnames";
 import styles from './ToDoList.module.css';
 
 export default class ToDoList extends Component {

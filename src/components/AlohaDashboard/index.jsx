@@ -87,7 +87,8 @@ class AlohaDashboard extends React.Component {
 						key={u.id}
 						deleteCallback={this.deleteHandler}
 					/>
-				))}
+				) ) }
+				
 			</ul>
 		);
 	}
