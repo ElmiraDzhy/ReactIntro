@@ -1,86 +1,120 @@
-import React, { Component } from "react";
-import { format } from "date-fns";
-import styles from "./ToDoForm.module.css";
+import React, { Component } from 'react';
+import { format, isBefore , parseISO} from 'date-fns';
+import styles from './ToDoForm.module.css';
+import classNames from 'classnames';
 export default class ToDoForm extends Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = {
-			toDoItem: "",
-			isDone: false,
-			time: new Date(),
-		};
-	}
+    this.state = {
+      toDoItem: '',
+      isDone: false,
+      time: new Date(),
+      isInputValid: true,
+      isDataValid: true,
+    };
+  }
 
-	submitHandler = (e) => {
-		e.preventDefault();
-		this.props.callback(this.state);
-	};
+  submitHandler = e => {
+    const { isDataValid, isInputValid } = this.state;
+    e.preventDefault();
+    if (isDataValid && isInputValid) {
+      this.props.callback(this.state);
+    } else {
+      alert('Input valid data')
+    }
+  };
 
-	generalHandler = ({ target }) => {
-		switch (target.type) {
-			case "text": {
-				this.setState({
-					toDoItem: target.value,
-				});
-				break;
-			}
+  generalHandler = ({ target }) => {
+    switch (target.type) {
+      case 'text': {
+        if (target.value.includes(' ')) {
+          this.setState({
+            isInputValid: false,
+          });
+        } else {
+          this.setState({
+            isInputValid: true,
+          })
+        }
 
-			case "checkbox": {
-				this.setState(() => ({
-					isDone: target.checked,
-				}));
-				break;
-			}
+        this.setState({
+          toDoItem: target.value,
+        });
+        break;
+      }
 
-			case "datetime-local": {
-				this.setState({
-					time: new Date(target.value),
-				});
-				break;
-			}
+      case 'checkbox': {
+        this.setState(() => ({
+          isDone: target.checked,
+        }));
+        break;
+      }
 
-			default:
-		}
-	};
+      case 'datetime-local': {
+        if (isBefore(new Date(target.value), new Date())) {
+          this.setState({
+            isDataValid: false,
+          });
+        } else {
+          this.setState({
+            isDataValid: true,
+          })
+        }
 
-	render() {
-		const { toDoItem, time, isDone } = this.state;
+        this.setState({
+          time: new Date(target.value),
+        });
+        break;
+      }
 
-		return (
-			<>
-				<form
-					onSubmit={this.submitHandler}
-					className={styles.container}>
-					<input
-						name="toDoItem"
-						type="text"
-						value={toDoItem}
-						onChange={ this.generalHandler }
-						className={ styles.inputTodo }
-						placeholder="What needs to be done?"
-					/>
+      default:
+    }
+  };
 
-					<label>
-						isDone?
-						<input
-							name="check"
-							type="checkbox"
-							checked={isDone}
-							onChange={this.generalHandler}
-						/>
-					</label>
+  render() {
+    const { toDoItem, time, isDone, isInputValid , isDataValid} = this.state;
+    const className = classNames([styles.inputTodo], {
+      [styles.inputInalid]: !isInputValid,
+      [styles.inputValid]: isInputValid,
+    } );
+    const dataClassName = classNames(
+      {[styles.dataInvalid]: !isDataValid,}
+    )
 
-					<input
-						name="time"
-						type="datetime-local"
-						value={format(time, "yyyy-MM-dd hh:mm")}
-						onChange={this.generalHandler}
-					/>
-					<button className={styles.addBtn}>+</button>
-				</form>
-			</>
-		);
-	}
+    return (
+      <>
+        <form onSubmit={this.submitHandler} className={styles.container}>
+          <input
+            name="toDoItem"
+            type="text"
+            value={toDoItem}
+            onChange={this.generalHandler}
+            className={className}
+            placeholder="What needs to be done?"
+            autoFocus
+          />
+
+          <label>
+            isDone?
+            <input
+              name="check"
+              type="checkbox"
+              checked={isDone}
+              onChange={this.generalHandler}
+            />
+          </label>
+
+          <input
+            name="time"
+            type="datetime-local"
+            value={format(time, 'yyyy-MM-dd hh:mm')}
+            onChange={ this.generalHandler }
+            className={dataClassName}
+          />
+          <button className={styles.addBtn}>+</button>
+        </form>
+      </>
+    );
+  }
 }
-
