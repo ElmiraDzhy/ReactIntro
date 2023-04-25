@@ -10,7 +10,8 @@ class ProductPage extends React.Component {
 
     this.state = {
       count: 0,
-      choosedProduct: {},
+      choosedProducts: [],
+      summary: 0,
     };
   }
 
@@ -21,19 +22,32 @@ class ProductPage extends React.Component {
   };
 
   chooseProductHandler = p => {
-    this.setState( {
-      choosedProduct: p,
-    })
-  }
+    const newProductsArr = [...this.state.choosedProducts];
+    newProductsArr.push(p);
+    this.setState({
+      choosedProducts: newProductsArr,
+    });
+  };
+
+  setSummary = v => {
+    this.setState(() => ({
+      summary: this.state.summary + v,
+    }));
+  };
 
   render() {
-    const { count, choosedProduct } = this.state;
+    const { count, choosedProducts, summary } = this.state;
 
     return (
       <ProductContext.Provider
-        value={{ count: count, countHandler: this.countHandler, chooseProductHandler: this.chooseProductHandler }}
+        value={{
+          count: count,
+          countHandler: this.countHandler,
+          chooseProductHandler: this.chooseProductHandler,
+          setSummary: this.setSummary,
+        }}
       >
-        { <ProductBag count={ count } choosedProduct={ choosedProduct} />}
+        {<ProductBag count={count} choosedProducts={choosedProducts} summary={summary} />}
         {<PropductsList />}
       </ProductContext.Provider>
     );

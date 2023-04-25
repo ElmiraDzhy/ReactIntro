@@ -1,26 +1,20 @@
-import React from 'react'
+import React from 'react';
+import ProductItem from './ProductItem';
+import styles from './ProductBag.module.css';
 
-function ProductBag( props ) {
+function ProductBag(props) {
+  const { count, choosedProducts, summary } = props;
 
-  const { count, choosedProduct } = props;
-  const arr = [];
-
-
-
-  const style = {
-    width: '300px',
-    height: '50px',
-    border: '1px solid blue',
-    height: '100px',
-
-  }
-  
   return (
-    <div style={style}>
-      Products in Cart: { count }
-      Choosed:
+    <div className={styles.container}>
+      <p>Products in Cart: {count}</p>
+      {choosedProducts.map(p => (
+        <ProductItem data={p} />
+      ) ) }
+      
+      <p>Sum: { summary}</p>
     </div>
-  )
+  );
 }
 
 export default ProductBag;

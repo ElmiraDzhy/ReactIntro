@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  object-position: center;
+  overflow: hidden;
+}
+
+.btn {
+  width: 25px;
+  height: 25px;
+  background-color: rgba(128, 128, 128, 0.774);
+  color: white;
+  font-weight: 700;
+  font-size: medium;
+  border: none;
+  border-radius: 50%;
+}
+
+.btn:hover{
+  cursor: pointer;
+  background-color: rgb(158, 158, 158);
+}
+
+.title {
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wrapper {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}

@@ -13,10 +13,11 @@ function ProductCard(props) {
   } = props.data;
   return (
     <ProductContext.Consumer>
-      {({ count, countHandler, chooseProductHandler}) => {
+      {({ count, countHandler, chooseProductHandler, setSummary}) => {
         const onClick = () => {
           chooseProductHandler({title, price, image});
           countHandler( count + 1 );
+          setSummary( price );
         };
 
         return (
