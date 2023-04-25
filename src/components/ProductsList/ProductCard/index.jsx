@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ProductCard.module.css';
 import RateStars from './RateStars';
-import { ProductContext } from '../../../App';
+import { ProductContext } from './../../ProductsPage';
 
 function ProductCard(props) {
   const {
@@ -13,10 +13,10 @@ function ProductCard(props) {
   } = props.data;
   return (
     <ProductContext.Consumer>
-      {({ count, countHandler }) => {
+      {({ count, countHandler, chooseProductHandler}) => {
         const onClick = () => {
-          console.log(countHandler);
-          countHandler(count + 1);
+          chooseProductHandler({title, price, image});
+          countHandler( count + 1 );
         };
 
         return (
