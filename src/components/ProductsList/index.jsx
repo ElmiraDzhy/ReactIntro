@@ -49,7 +49,7 @@ export default class PropductsList extends Component {
       return <div className="">Error...</div>;
     }
 
-    return (
+    return ( 
       <section>
         {products}
       </section>

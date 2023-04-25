@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './ProductCard.module.css';
 import RateStars from './RateStars';
+import { ProductContext } from '../../../App';
 
 function ProductCard(props) {
   const {
@@ -8,19 +9,31 @@ function ProductCard(props) {
     price,
     image,
     rating: { rate },
-    description
+    description,
   } = props.data;
   return (
-    <article className={styles.container}>
-      <img className={styles.image} src={image} alt="" />
-      <h1>{ title }</h1>
-      <p className={ styles.description }>{description }</p>
-      <div className={styles.wrapper}>
-        <RateStars rate={rate} />{' '}
-        <p className={styles.price}>${price}</p>
-      </div>
-      <button className={styles.btn}>Add to cart</button>
-    </article>
+    <ProductContext.Consumer>
+      {({ count, countHandler }) => {
+        const onClick = () => {
+          console.log(countHandler);
+          countHandler(count + 1);
+        };
+
+        return (
+          <article className={styles.container}>
+            <img className={styles.image} src={image} alt="" />
+            <h1 className={styles.title}>{title}</h1>
+            <p className={styles.description}>{description}</p>
+            <div className={styles.wrapper}>
+              <RateStars rate={rate} /> <p className={styles.price}>${price}</p>
+            </div>
+            <button onClick={onClick} className={styles.btn}>
+              Add to cart
+            </button>
+          </article>
+        );
+      }}
+    </ProductContext.Consumer>
   );
 }
 

@@ -11,11 +11,11 @@ function RateStars( props ) {
   const stars = ( amount ) => {
     const arr = [];
     for ( let i = 0; i < amount; i++ ){
-      arr.push( <Icon path={ mdiStar } size={ 0.8 } /> ); 
+      arr.push( <Icon key={`${arr.length+i}`} path={ mdiStar } size={ 0.8 } /> ); 
     }
     if ( amount < MAX_STARS ) {
       for ( let i = amount; i < MAX_STARS;  i++){
-        arr.push(<Icon path={mdiStarOutline} size={0.8} />)
+        arr.push(<Icon key={`${arr.length+i}`} path={mdiStarOutline} size={0.8} />)
       }
     }
     return arr;
@@ -28,4 +28,4 @@ function RateStars( props ) {
   )
 }
 
-export default RateStars
+export default RateStars;

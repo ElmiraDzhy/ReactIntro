@@ -18,18 +18,21 @@
   object-position: center;
 }
 
-h1 {
+.title {
   height: 20px;
   font-weight: 200;
   text-transform: uppercase;
   width: 100%;
   text-align: center;
   margin-bottom: 0;
-}
-h1{
-  overflow:hidden;
- white-space: nowrap;
+  overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.title:hover{
+  cursor: pointer;
+  border-bottom: 1px solid black;
 }
 
 .btn {
@@ -48,7 +51,7 @@ h1{
   );
 }
 
-.btn:hover{
+.btn:hover {
   cursor: pointer;
   background: rgb(1, 255, 255);
   background: linear-gradient(
@@ -58,26 +61,26 @@ h1{
   );
 }
 
-.wrapper{
+.wrapper {
   width: 90%;
   display: flex;
 }
 
-.wrapper > *{
+.wrapper > * {
   margin: auto;
 }
 
-.price{
+.price {
   text-transform: uppercase;
   color: grey;
 }
 
-.rate{
+.rate {
   width: 30px;
   background-color: aqua;
 }
 
-.description{
+.description {
   width: 100%;
   font-size: 12px;
   height: 50px;

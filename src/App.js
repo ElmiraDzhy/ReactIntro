@@ -1,28 +1,34 @@
 import React from 'react';
 import PropductsList from './components/ProductsList';
+import ProductBag from './ProductBag';
+
+export const ProductContext = React.createContext();
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      isRendering: true,
+      count: 0,
     };
   }
 
-  onClick = () => {
+  countHandler = v => {
     this.setState({
-      isRendering: false,
+      count: v,
     });
   };
 
   render() {
-    const { isRendering } = this.state;
+    const { count } = this.state;
 
     return (
-      <>
-        <button onClick={this.onClick}>Kill me</button>
-        {<PropductsList/>}
-      </>
+      <ProductContext.Provider
+        value={{ count: count, countHandler: this.countHandler }}
+      >
+        {<ProductBag count={count} />}
+        {<PropductsList />}
+      </ProductContext.Provider>
     );
   }
 }
