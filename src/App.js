@@ -1,13 +1,11 @@
-import React from 'react'
-import ProductPage from './components/ProductsPage'
-
+import React from 'react';
 function App() {
   return (
-    <div>
-      <ProductPage/>
-    </div>
-  )
+    <>
+      <button onClick={window.open}>open</button>
+      <button onClick={window.close}>close</button>
+    </>
+  );
 }
 
-export default App
-
+export default App;
