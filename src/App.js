@@ -6,8 +6,8 @@ import Box from './components/Box';
 import ToDoList from './components/ToDoList';
 import ProductsPage from './components/ProductsPage';
 import UserList from './components/UserList';
-import Redirecter from './components/Redirecter';
 import CounterPage from './components/pages/CounterPage'
+import DataLoader from './components/pages/DataLoader';
 class App extends React.Component {
   render() {
     return (
@@ -28,6 +28,8 @@ class App extends React.Component {
           <Link to="/products">Click to go to Products Page</Link>
 
           <Link to="/counterPage">Click to go to CounterPage</Link>
+          <Link to="/dataLoader">Click to go to DataLoader</Link>
+
         </nav>
 
         <Routes>
@@ -45,6 +47,8 @@ class App extends React.Component {
           <Route path="/userList" element={<UserList />}></Route>
 
           <Route path="/counterPage" element={<CounterPage />}></Route>
+          <Route path="/dataLoader" element={<DataLoader />}></Route>
+
         </Routes>
       </BrowserRouter>
     );
@@ -53,6 +57,3 @@ class App extends React.Component {
 
 export default App;
 
-const NotFound = () => {
-  return <h1>Page no found</h1>;
-};
