@@ -6,13 +6,29 @@ import Box from './components/Box';
 import ToDoList from './components/ToDoList';
 import ProductsPage from './components/ProductsPage';
 import UserList from './components/UserList';
-import Redirect from './components/Redirecter'
-
+import Redirecter from './components/Redirecter';
+import CounterPage from './components/pages/CounterPage'
 class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
         {/**Routes - Переключатель (Switch) */}
+
+        <nav>
+          <Link to="/">Click to go to home</Link>
+
+          <Link to="/timer">Click to go to timer</Link>
+
+          <Link to="/redirecter">Click to go to redirecter</Link>
+
+          <Link to="/box">Click to go to box</Link>
+
+          <Link to="/toDoList">Click to go to toDoList</Link>
+
+          <Link to="/products">Click to go to Products Page</Link>
+
+          <Link to="/counterPage">Click to go to CounterPage</Link>
+        </nav>
 
         <Routes>
           {/**Route- одна из дорог */}
@@ -28,24 +44,8 @@ class App extends React.Component {
 
           <Route path="/userList" element={<UserList />}></Route>
 
-          <Route path="/redirecter" element={<Redirect />}></Route>
+          <Route path="/counterPage" element={<CounterPage />}></Route>
         </Routes>
-
-        <nav>
-          <Link to="/">Click to go to home</Link>
-
-          <Link to="/timer">Click to go to timer</Link>
-
-          <Link to="/redirecter">Click to go to redirecter</Link>
-
-          <Link to="/box">Click to go to box</Link>
-
-          <Link to="/toDoList">Click to go to toDoList</Link>
-
-          <Link to="/products">Click to go to Products Page</Link>
-
-          <Link to="/userList">Click to go to User List</Link>
-        </nav>
       </BrowserRouter>
     );
   }

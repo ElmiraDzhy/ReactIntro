@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 class Counter extends React.Component {
   constructor(props){
@@ -16,16 +17,24 @@ class Counter extends React.Component {
 
     if(e.target.name === 'plus'){
       this.setState({
-        counter:  counter + 1,
+        counter:  counter + Number(this.props.step),
       });
 
     }else{
       this.setState({
-        counter:  counter > 0 ? counter - 1: 0,
+        counter:  counter > 0 ? counter - Number(this.props.step): 0,
       });
 
     }
   }  
+
+  shouldComponentUpdate( nextProps, nextState ) {
+    if ( this.props.step !== nextProps.step ) {
+      return false;
+    }
+
+    return true;
+  }
 
  
 
@@ -43,4 +52,11 @@ class Counter extends React.Component {
   }
 }
 
+Counter.propTypes = {
+  step: PropTypes.number,
+}
+
+Counter.defaultProps = {
+  step: 5,
+}
 export default Counter;
